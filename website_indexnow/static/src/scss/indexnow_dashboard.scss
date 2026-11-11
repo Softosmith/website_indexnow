@@ -1,0 +1,202 @@
+.o_indexnow_dashboard {
+    --indexnow-primary: #714b67;
+    --indexnow-success: #198754;
+    --indexnow-warning: #d99500;
+    --indexnow-danger: #dc3545;
+    min-height: 100%;
+
+    .o_indexnow_title_icon {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 8px 20px rgba(113, 75, 103, .25);
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .o_indexnow_website_filter {
+        width: 100%;
+        max-width: 240px;
+    }
+
+    .card,
+    .o_indexnow_kpi {
+        border-radius: .8rem;
+    }
+
+    .o_indexnow_kpi {
+        min-height: 145px;
+        color: inherit;
+        transition: transform .18s ease, box-shadow .18s ease;
+        overflow: hidden;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 4px;
+            background: var(--kpi-color);
+        }
+
+        &:is(button):hover {
+            transform: translateY(-2px);
+            box-shadow: 0 .5rem 1.25rem rgba(0, 0, 0, .1) !important;
+        }
+    }
+
+    .o_indexnow_kpi_primary { --kpi-color: var(--indexnow-primary); }
+    .o_indexnow_kpi_success { --kpi-color: var(--indexnow-success); }
+    .o_indexnow_kpi_warning { --kpi-color: var(--indexnow-warning); }
+    .o_indexnow_kpi_danger { --kpi-color: var(--indexnow-danger); }
+    .o_indexnow_kpi_info { --kpi-color: #0aa2c0; }
+
+    .o_indexnow_kpi_icon,
+    .o_indexnow_health_icon,
+    .o_indexnow_activity_icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        border-radius: .65rem;
+    }
+
+    .o_indexnow_kpi_icon {
+        width: 42px;
+        height: 42px;
+        color: var(--kpi-color);
+        background: color-mix(in srgb, var(--kpi-color) 12%, transparent);
+        font-size: 1.15rem;
+    }
+
+    .o_indexnow_health_icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+
+    .o_indexnow_activity_icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .o_indexnow_chart {
+        display: flex;
+        align-items: stretch;
+        gap: clamp(6px, 1.5vw, 22px);
+        height: 280px;
+        padding: 12px 0 30px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-bottom: 1px solid var(--border-color, #dee2e6);
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, .05) 1px, transparent 1px);
+        background-size: 100% 25%;
+        background-origin: content-box;
+    }
+
+    .o_indexnow_chart_day {
+        display: flex;
+        flex: 1 1 0;
+        min-width: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+    }
+
+    .o_indexnow_chart_30d {
+        .o_indexnow_chart_day {
+            flex: 0 0 calc((100% - 132px) / 7);
+            min-width: 80px;
+        }
+    }
+
+    .o_indexnow_chart_label {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        max-width: 100%;
+        transform: translateX(-50%);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: .72rem;
+    }
+
+    .o_indexnow_chart_bars {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 3px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .o_indexnow_bar {
+        display: block;
+        width: 38%;
+        max-width: 18px;
+        min-height: 0;
+        border-radius: 4px 4px 0 0;
+        transition: opacity .15s ease, height .2s ease;
+
+        &:hover { opacity: .75; }
+    }
+
+    .o_indexnow_website_card {
+        transition: transform .18s ease, box-shadow .18s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 .5rem 1.25rem rgba(0, 0, 0, .09) !important;
+        }
+    }
+
+    .o_indexnow_website_meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .75rem;
+        min-width: 0;
+    }
+
+    .o_indexnow_last_success {
+        min-width: 0;
+        overflow: hidden;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .list-group-item-action {
+        border-inline: 0;
+    }
+
+    @media (max-width: 767.98px) {
+        .o_indexnow_chart {
+            gap: 4px;
+        }
+
+        .o_indexnow_chart_day {
+            min-width: 44px;
+        }
+
+        .o_indexnow_website_meta {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: .25rem;
+        }
+
+        .o_indexnow_last_success {
+            max-width: 100%;
+            text-align: left;
+        }
+    }
+}

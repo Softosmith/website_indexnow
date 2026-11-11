@@ -1,0 +1,875 @@
+<style>
+    .ix-page {
+        --ix-purple: #714B67;
+        --ix-blue: #1683FF;
+        --ix-cyan: #20C7D9;
+        --ix-green: #22C55E;
+        --ix-amber: #F59E0B;
+        --ix-ink: #172033;
+        --ix-muted: #667085;
+        --ix-line: #E4E7EC;
+        --ix-soft: #F8FAFC;
+        --ix-purple-soft: #F6F0F5;
+        --ix-blue-soft: #EDF6FF;
+        max-width: 1200px;
+        margin: 0 auto;
+        color: var(--ix-ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        line-height: 1.65;
+    }
+
+    .ix-page * {
+        box-sizing: border-box;
+    }
+
+    .ix-page img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .ix-section {
+        padding: 72px 34px;
+    }
+
+    .ix-section + .ix-section {
+        border-top: 1px solid var(--ix-line);
+    }
+
+    .ix-soft-section {
+        background: var(--ix-soft);
+    }
+
+    .ix-dark-section {
+        background: var(--ix-ink);
+        color: #FFFFFF;
+        border-top: 0 !important;
+    }
+
+    .ix-center {
+        text-align: center;
+    }
+
+    .ix-eyebrow {
+        display: inline-block;
+        margin: 0 0 14px;
+        color: var(--ix-purple);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+    }
+
+    .ix-dark-section .ix-eyebrow {
+        color: #81E6F0;
+    }
+
+    .ix-title {
+        max-width: 850px;
+        margin: 0 auto 20px;
+        color: var(--ix-ink);
+        font-size: 48px;
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        line-height: 1.08;
+    }
+
+    .ix-heading {
+        max-width: 760px;
+        margin: 0 auto 16px;
+        color: var(--ix-ink);
+        font-size: 34px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.18;
+    }
+
+    .ix-dark-section .ix-heading {
+        color: #FFFFFF;
+    }
+
+    .ix-lead,
+    .ix-intro {
+        max-width: 780px;
+        margin: 0 auto;
+        color: var(--ix-muted);
+        font-size: 18px;
+        line-height: 1.75;
+    }
+
+    .ix-dark-section .ix-intro {
+        color: #C8D0DD;
+    }
+
+    .ix-badges {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 28px 0 38px;
+    }
+
+    .ix-badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 7px 14px;
+        border: 1px solid #DDD1DA;
+        border-radius: 999px;
+        background: #FFFFFF;
+        color: var(--ix-purple);
+        font-size: 13px;
+        font-weight: 750;
+    }
+
+    .ix-badge-primary {
+        border-color: var(--ix-purple);
+        background: var(--ix-purple);
+        color: #FFFFFF;
+    }
+
+    .ix-hero {
+        overflow: hidden;
+        padding-top: 84px;
+        background: #FFFFFF;
+    }
+
+    .ix-hero-visual {
+        position: relative;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 14px;
+        border: 1px solid #D9DEE7;
+        border-radius: 24px;
+        background: #FFFFFF;
+        box-shadow: 0 24px 70px rgba(23, 32, 51, 0.12);
+    }
+
+    .ix-hero-visual::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 44px;
+        width: 90px;
+        height: 4px;
+        border-radius: 4px;
+        background: var(--ix-blue);
+    }
+
+    .ix-hero-visual img {
+        width: 100%;
+        border-radius: 14px;
+    }
+
+    .ix-proof-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        margin-top: 48px;
+        border: 1px solid var(--ix-line);
+        border-radius: 18px;
+        background: #FFFFFF;
+        overflow: hidden;
+    }
+
+    .ix-proof-item {
+        min-height: 138px;
+        padding: 27px 22px;
+        text-align: left;
+    }
+
+    .ix-proof-item + .ix-proof-item {
+        border-left: 1px solid var(--ix-line);
+    }
+
+    .ix-proof-mark {
+        display: block;
+        width: 28px;
+        height: 4px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        background: var(--ix-blue);
+    }
+
+    .ix-proof-item:nth-child(2) .ix-proof-mark { background: var(--ix-purple); }
+    .ix-proof-item:nth-child(3) .ix-proof-mark { background: var(--ix-green); }
+    .ix-proof-item:nth-child(4) .ix-proof-mark { background: var(--ix-cyan); }
+
+    .ix-proof-item strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--ix-ink);
+        font-size: 16px;
+    }
+
+    .ix-proof-item span {
+        color: var(--ix-muted);
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .ix-feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+        margin-top: 44px;
+    }
+
+    .ix-feature-card {
+        min-height: 340px;
+        padding: 32px 28px;
+        border: 1px solid var(--ix-line);
+        border-radius: 18px;
+        background: #FFFFFF;
+        text-align: left;
+    }
+
+    .ix-feature-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 92px;
+        height: 92px;
+        margin-bottom: 28px;
+        border-radius: 18px;
+        background: var(--ix-soft);
+    }
+
+    .ix-feature-icon img {
+        width: 76px;
+        height: 76px;
+        object-fit: contain;
+    }
+
+    .ix-feature-card h3 {
+        margin: 0 0 12px;
+        color: var(--ix-ink);
+        font-size: 21px;
+        font-weight: 800;
+        line-height: 1.3;
+    }
+
+    .ix-feature-card p {
+        margin: 0;
+        color: var(--ix-muted);
+        font-size: 15px;
+    }
+
+    .ix-flow {
+        display: grid;
+        grid-template-columns: 1fr 50px 1fr 50px 1fr;
+        align-items: stretch;
+        max-width: 1020px;
+        margin: 48px auto 0;
+    }
+
+    .ix-step {
+        padding: 30px 25px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.06);
+        text-align: left;
+    }
+
+    .ix-step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        margin-bottom: 22px;
+        border-radius: 50%;
+        background: #FFFFFF;
+        color: var(--ix-ink);
+        font-weight: 850;
+    }
+
+    .ix-step h3 {
+        margin: 0 0 10px;
+        color: #FFFFFF;
+        font-size: 19px;
+        font-weight: 800;
+    }
+
+    .ix-step p {
+        margin: 0;
+        color: #C8D0DD;
+        font-size: 14px;
+    }
+
+    .ix-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #81E6F0;
+        font-size: 28px;
+        font-weight: 300;
+    }
+
+    .ix-walkthrough {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .ix-screen-block {
+        display: grid;
+        grid-template-columns: minmax(230px, 0.34fr) minmax(0, 0.66fr);
+        gap: 42px;
+        align-items: center;
+        margin-top: 58px;
+    }
+
+    .ix-screen-block + .ix-screen-block {
+        margin-top: 88px;
+        padding-top: 88px;
+        border-top: 1px solid var(--ix-line);
+    }
+
+    .ix-screen-block:nth-child(even) .ix-screen-copy {
+        order: 2;
+    }
+
+    .ix-screen-block:nth-child(even) .ix-media-frame {
+        order: 1;
+    }
+
+    .ix-screen-kicker {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--ix-blue);
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .ix-screen-copy h3 {
+        margin: 0 0 14px;
+        color: var(--ix-ink);
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+    }
+
+    .ix-screen-copy p {
+        margin: 0;
+        color: var(--ix-muted);
+        font-size: 15px;
+    }
+
+    .ix-media-frame {
+        padding: 10px;
+        border: 1px solid #D9DEE7;
+        border-radius: 16px;
+        background: #FFFFFF;
+        box-shadow: 0 18px 50px rgba(23, 32, 51, 0.1);
+    }
+
+    .ix-media-frame img {
+        width: 100%;
+        border-radius: 9px;
+    }
+
+    .ix-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 360px;
+        aspect-ratio: 16 / 9;
+        border-radius: 9px;
+        background: #000000;
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .ix-placeholder-inner {
+        padding: 24px;
+    }
+
+    .ix-placeholder-label {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+    }
+
+    .ix-placeholder-name {
+        display: block;
+        color: #9CA3AF;
+        font-family: Consolas, Monaco, monospace;
+        font-size: 13px;
+    }
+
+    .ix-operations-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        margin-top: 44px;
+        text-align: left;
+    }
+
+    .ix-operation-card {
+        padding: 34px;
+        border: 1px solid var(--ix-line);
+        border-radius: 18px;
+        background: #FFFFFF;
+    }
+
+    .ix-operation-card h3 {
+        margin: 0 0 20px;
+        color: var(--ix-ink);
+        font-size: 21px;
+        font-weight: 800;
+    }
+
+    .ix-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .ix-list li {
+        position: relative;
+        padding: 10px 0 10px 28px;
+        border-top: 1px solid #EEF1F5;
+        color: var(--ix-muted);
+        font-size: 14px;
+    }
+
+    .ix-list li:first-child {
+        border-top: 0;
+    }
+
+    .ix-list li::before {
+        content: "";
+        position: absolute;
+        top: 19px;
+        left: 2px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--ix-green);
+        box-shadow: 0 0 0 4px #EAF9EF;
+    }
+
+    .ix-note {
+        margin-top: 24px;
+        padding: 18px 20px;
+        border-left: 4px solid var(--ix-amber);
+        border-radius: 0 10px 10px 0;
+        background: #FFF9ED;
+        color: #73510C;
+        font-size: 14px;
+    }
+
+    .ix-tech-table {
+        width: 100%;
+        margin-top: 42px;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border: 1px solid var(--ix-line);
+        border-radius: 16px;
+        background: #FFFFFF;
+        text-align: left;
+    }
+
+    .ix-tech-table th,
+    .ix-tech-table td {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--ix-line);
+        vertical-align: top;
+        font-size: 14px;
+    }
+
+    .ix-tech-table tr:last-child th,
+    .ix-tech-table tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .ix-tech-table th {
+        width: 30%;
+        background: #FBFCFD;
+        color: var(--ix-ink);
+        font-weight: 800;
+    }
+
+    .ix-tech-table td {
+        color: var(--ix-muted);
+    }
+
+    .ix-tech-table code {
+        color: var(--ix-purple);
+        font-size: 13px;
+    }
+
+    .ix-publisher {
+        padding-top: 66px;
+        padding-bottom: 66px;
+        text-align: center;
+    }
+
+    .ix-publisher img {
+        width: 250px;
+        margin: 0 auto 24px;
+    }
+
+    .ix-publisher h2 {
+        margin: 0 0 12px;
+        color: var(--ix-ink);
+        font-size: 26px;
+        font-weight: 800;
+    }
+
+    .ix-publisher p {
+        max-width: 700px;
+        margin: 8px auto;
+        color: var(--ix-muted);
+        font-size: 14px;
+    }
+
+    .ix-publisher a {
+        color: var(--ix-blue);
+        font-weight: 750;
+        text-decoration: none;
+    }
+
+    .ix-legal {
+        margin-top: 24px !important;
+        padding-top: 24px;
+        border-top: 1px solid var(--ix-line);
+        font-size: 12px !important;
+    }
+
+    @media (max-width: 900px) {
+        .ix-title { font-size: 40px; }
+        .ix-proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .ix-proof-item:nth-child(3) { border-left: 0; border-top: 1px solid var(--ix-line); }
+        .ix-proof-item:nth-child(4) { border-top: 1px solid var(--ix-line); }
+        .ix-feature-grid { grid-template-columns: 1fr; }
+        .ix-feature-card { min-height: 0; }
+        .ix-flow { grid-template-columns: 1fr; gap: 14px; }
+        .ix-arrow { transform: rotate(90deg); min-height: 30px; }
+        .ix-screen-block { grid-template-columns: 1fr; gap: 28px; }
+        .ix-screen-block:nth-child(even) .ix-screen-copy,
+        .ix-screen-block:nth-child(even) .ix-media-frame { order: initial; }
+        .ix-screen-copy { text-align: center; }
+        .ix-operations-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+        .ix-section { padding: 54px 20px; }
+        .ix-hero { padding-top: 62px; }
+        .ix-title { font-size: 34px; }
+        .ix-heading { font-size: 28px; }
+        .ix-lead, .ix-intro { font-size: 16px; }
+        .ix-proof-grid { grid-template-columns: 1fr; }
+        .ix-proof-item + .ix-proof-item { border-left: 0; border-top: 1px solid var(--ix-line); }
+        .ix-feature-card { padding: 26px 22px; }
+        .ix-screen-block + .ix-screen-block { margin-top: 62px; padding-top: 62px; }
+        .ix-placeholder { min-height: 220px; }
+        .ix-operation-card { padding: 26px 22px; }
+        .ix-tech-table, .ix-tech-table tbody, .ix-tech-table tr, .ix-tech-table th, .ix-tech-table td { display: block; width: 100%; }
+        .ix-tech-table th { border-bottom: 0; padding-bottom: 6px; }
+        .ix-tech-table td { padding-top: 6px; }
+    }
+</style>
+
+<div class="ix-page">
+    <section class="oe_container ix-section ix-hero ix-center">
+        <span class="ix-eyebrow">IndexNow SEO for Odoo 19</span>
+        <h1 class="ix-title">Publish a page. Notify search providers automatically.</h1>
+        <p class="ix-lead">
+            Odoo IndexNow SEO detects standard Website page changes, queues canonical URLs safely,
+            and submits them asynchronously to IndexNow-enabled providers without slowing down page saves.
+        </p>
+
+        <div class="ix-badges" aria-label="Product highlights">
+            <span class="ix-badge ix-badge-primary">Odoo 19</span>
+            <span class="ix-badge">Website Pages</span>
+            <span class="ix-badge">Multi-Website Ready</span>
+            <span class="ix-badge">Asynchronous Queue</span>
+            <span class="ix-badge">OPL-1</span>
+        </div>
+
+        <div class="ix-hero-visual">
+            <img src="hero.png" alt="Workflow showing an Odoo Website page change moving through a safe queue to an IndexNow provider"/>
+        </div>
+
+        <div class="ix-proof-grid" aria-label="Core capabilities">
+            <div class="ix-proof-item">
+                <span class="ix-proof-mark"></span>
+                <strong>Automatic tracking</strong>
+                <span>Publish, update, move, restrict, unpublish, or delete a page.</span>
+            </div>
+            <div class="ix-proof-item">
+                <span class="ix-proof-mark"></span>
+                <strong>Per-website keys</strong>
+                <span>Independent configuration and key verification for every domain.</span>
+            </div>
+            <div class="ix-proof-item">
+                <span class="ix-proof-mark"></span>
+                <strong>Safe delivery</strong>
+                <span>Deduplicated batches with bounded retries and clear failure states.</span>
+            </div>
+            <div class="ix-proof-item">
+                <span class="ix-proof-mark"></span>
+                <strong>Language aware</strong>
+                <span>Submit enabled language variants using their canonical public URLs.</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="oe_container ix-section ix-soft-section ix-center">
+        <span class="ix-eyebrow">Built for real operations</span>
+        <h2 class="ix-heading">Fast for editors. Controlled for administrators.</h2>
+        <p class="ix-intro">
+            Page saves stay fast because external requests happen in the background. Administrators get
+            visible queues, immutable submission history, manual controls, and separate health per website.
+        </p>
+
+        <div class="ix-feature-grid">
+            <article class="ix-feature-card">
+                <div class="ix-feature-icon">
+                    <img src="feature_automatic.png" alt="Web page sending an update into an automatic queue"/>
+                </div>
+                <h3>Automatic, never blocking</h3>
+                <p>
+                    Relevant page changes create a deduplicated queue entry. Editors can keep working while
+                    scheduled processing submits URLs in safe batches.
+                </p>
+            </article>
+
+            <article class="ix-feature-card">
+                <div class="ix-feature-icon">
+                    <img src="feature_multiwebsite.png" alt="Three isolated websites with separate keys"/>
+                </div>
+                <h3>True multi-website isolation</h3>
+                <p>
+                    Every website keeps its own domain, IndexNow key, configuration, queue, and history.
+                    One domain never leaks into another website's submissions.
+                </p>
+            </article>
+
+            <article class="ix-feature-card">
+                <div class="ix-feature-icon">
+                    <img src="feature_retry.png" alt="URL card with bounded retry arrows and success check"/>
+                </div>
+                <h3>Bounded retry policy</h3>
+                <p>
+                    Temporary rate limits, timeouts, and provider errors retry with backoff. Configuration
+                    errors stay visible for an administrator to correct instead of looping forever.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section class="oe_container ix-section ix-dark-section ix-center">
+        <span class="ix-eyebrow">How it works</span>
+        <h2 class="ix-heading">From page change to provider notification</h2>
+        <p class="ix-intro">
+            A simple three-stage flow gives editors speed and administrators a complete audit trail.
+        </p>
+
+        <div class="ix-flow">
+            <article class="ix-step">
+                <span class="ix-step-number">1</span>
+                <h3>Your page changes</h3>
+                <p>Odoo detects a supported publish, content, URL, visibility, or deletion event.</p>
+            </article>
+            <div class="ix-arrow" aria-hidden="true">&#8594;</div>
+            <article class="ix-step">
+                <span class="ix-step-number">2</span>
+                <h3>Odoo queues it safely</h3>
+                <p>The canonical URL is normalized, deduplicated, and prepared for asynchronous batching.</p>
+            </article>
+            <div class="ix-arrow" aria-hidden="true">&#8594;</div>
+            <article class="ix-step">
+                <span class="ix-step-number">3</span>
+                <h3>IndexNow receives it</h3>
+                <p>The response, timing, URL count, and outcome are recorded for clear administration.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="oe_container ix-section ix-walkthrough">
+        <div class="ix-center">
+            <span class="ix-eyebrow">Real Odoo screens</span>
+            <h2 class="ix-heading">Everything visible. Nothing hidden in logs.</h2>
+            <p class="ix-intro">
+                Configure, monitor, process, and audit IndexNow activity from focused Odoo administration screens.
+            </p>
+        </div>
+
+        <article class="ix-screen-block">
+            <div class="ix-screen-copy">
+                <span class="ix-screen-kicker">Configuration</span>
+                <h3>Set up each website in one place</h3>
+                <p>
+                    Enable IndexNow, manage the public domain and key, verify the key resource, choose batching
+                    behavior, and run initial submission actions from Website settings.
+                </p>
+            </div>
+            <div class="ix-media-frame">
+                <img src="screenshots/screenshot_settings.png" alt="IndexNow SEO configuration and key verification in Odoo Website settings"/>
+            </div>
+        </article>
+
+        <article class="ix-screen-block">
+            <div class="ix-screen-copy">
+                <span class="ix-screen-kicker">Per-page visibility</span>
+                <h3>Know the status of every page</h3>
+                <p>
+                    Page records surface canonical URL, queue and submission timestamps, provider response,
+                    and manual actions without making administrators hunt through technical logs.
+                </p>
+            </div>
+            <div class="ix-media-frame">
+                <!-- Replace this block with screenshot_page_status.png when the final screenshot is ready. -->
+                <div class="ix-placeholder" role="img" aria-label="Reserved space for the page-level IndexNow status screenshot">
+                    <div class="ix-placeholder-inner">
+                        <span class="ix-placeholder-label">Screenshot in progress</span>
+                        <span class="ix-placeholder-name">screenshot_page_status.png</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="ix-screen-block">
+            <div class="ix-screen-copy">
+                <span class="ix-screen-kicker">URL queue</span>
+                <h3>See what is waiting and why</h3>
+                <p>
+                    Review page URLs, change events, states, retry timing, and website ownership. Process eligible
+                    work immediately when needed while normal submissions continue on schedule.
+                </p>
+            </div>
+            <div class="ix-media-frame">
+                <img src="screenshots/screenshot_queue.png" alt="IndexNow URL queue with page events and processing states in Odoo"/>
+            </div>
+        </article>
+
+        <article class="ix-screen-block">
+            <div class="ix-screen-copy">
+                <span class="ix-screen-kicker">Submission history</span>
+                <h3>A clear audit trail for every batch</h3>
+                <p>
+                    Inspect host, trigger, URL count, duration, HTTP status, and provider outcome. Successful
+                    receipt is recorded accurately without claiming that a URL is already indexed.
+                </p>
+            </div>
+            <div class="ix-media-frame">
+                <img src="screenshots/screenshot_history.png" alt="IndexNow submission history showing batch status, duration, and provider responses"/>
+            </div>
+        </article>
+
+        <article class="ix-screen-block">
+            <div class="ix-screen-copy">
+                <span class="ix-screen-kicker">Multi-website dashboard</span>
+                <h3>Health across every domain at a glance</h3>
+                <p>
+                    Compare enabled state, key verification, pending and failed work, recent submission volume,
+                    and last success for each website from one focused dashboard.
+                </p>
+            </div>
+            <div class="ix-media-frame">
+                <img src="screenshots/screenshot_dashboard.png" alt="IndexNow dashboard showing submission health, queue activity, and status across multiple Odoo websites"/>
+            </div>
+        </article>
+    </section>
+
+    <section class="oe_container ix-section ix-soft-section ix-center">
+        <span class="ix-eyebrow">Reliable by design</span>
+        <h2 class="ix-heading">The controls needed for production websites</h2>
+        <p class="ix-intro">
+            The first release stays intentionally focused on standard Odoo Website Builder pages.
+        </p>
+
+        <div class="ix-operations-grid">
+            <article class="ix-operation-card">
+                <h3>Supported page lifecycle</h3>
+                <ul class="ix-list">
+                    <li>Publish, update, move, restrict, unpublish, de-index, and delete events</li>
+                    <li>Canonical URL normalization and queue deduplication</li>
+                    <li>Enabled website language variants where configured</li>
+                    <li>Manual page submission, bulk submission, and initial synchronization</li>
+                    <li>Scheduled batching with configurable delay and batch size</li>
+                </ul>
+            </article>
+
+            <article class="ix-operation-card">
+                <h3>Failure behavior you can trust</h3>
+                <ul class="ix-list">
+                    <li>Bounded backoff for rate limits, timeouts, and temporary server errors</li>
+                    <li>Configuration errors remain visible for manual correction</li>
+                    <li>Failed records stay available instead of disappearing during cleanup</li>
+                    <li>Successful queue and history records follow controlled retention periods</li>
+                </ul>
+                <div class="ix-note">
+                    <strong>Honest semantics:</strong> submitted, received, or accepted means the provider received
+                    the URL. It does not guarantee crawling, indexing, ranking, or a specific search position.
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="oe_container ix-section ix-center">
+        <span class="ix-eyebrow">Technical details</span>
+        <h2 class="ix-heading">Focused scope, clear requirements</h2>
+
+        <table class="ix-tech-table">
+            <tbody>
+                <tr>
+                    <th>Odoo version</th>
+                    <td>Odoo 19.0. Designed for Community, Enterprise, and Odoo.sh deployments.</td>
+                </tr>
+                <tr>
+                    <th>Dependency</th>
+                    <td><code>website</code> only. Version 1 supports standard <code>website.page</code> records.</td>
+                </tr>
+                <tr>
+                    <th>Hosting</th>
+                    <td>Use Odoo.sh or an on-premise deployment that permits third-party Python modules.</td>
+                </tr>
+                <tr>
+                    <th>External service</th>
+                    <td>Configured page URLs and the public key location are submitted to the selected IndexNow endpoint. No data is sent to Softosmith.</td>
+                </tr>
+                <tr>
+                    <th>Multi-website</th>
+                    <td>Supported. Configuration, keys, queue records, and submission history are isolated per website.</td>
+                </tr>
+                <tr>
+                    <th>Scheduled actions</th>
+                    <td>Queue processing runs every five minutes. Daily cleanup applies configured record-retention rules.</td>
+                </tr>
+                <tr>
+                    <th>License</th>
+                    <td>OPL-1</td>
+                </tr>
+                <tr>
+                    <th>Version 1 exclusions</th>
+                    <td>Products, blogs, events, forums, courses, jobs, portal records, quotations, and arbitrary URLs are intentionally excluded.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer class="oe_container ix-section ix-soft-section ix-publisher">
+        <img src="logo_softosmith.png" alt="Softosmith - The Digital Innovation"/>
+        <h2>Support and custom Odoo development</h2>
+        <p>Built and maintained by Asad Ali at Softosmith.</p>
+        <p>
+            <a href="mailto:support@softosmith.com">support@softosmith.com</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://softosmith.com">softosmith.com</a>
+        </p>
+        <p class="ix-legal">
+            Released under the OPL-1 license. IndexNow is a protocol used by participating search providers.
+            This app is not affiliated with or endorsed by those providers. Provider receipt does not guarantee indexing or ranking.
+        </p>
+    </footer>
+</div>

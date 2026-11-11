@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="indexnow_dashboard_list" model="ir.ui.view">
+        <field name="name">website.indexnow.dashboard.list</field><field name="model">website</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0"><field name="name"/><field name="domain"/><field name="indexnow_enabled" string="Enabled"/><field name="indexnow_health" string="Health" widget="badge" decoration-success="indexnow_health == 'ready'" decoration-danger="indexnow_health == 'failures'" decoration-warning="indexnow_health in ('domain_missing', 'key_missing')" decoration-info="indexnow_health == 'key_unverified'"/><field name="indexnow_key_verified" string="Key Verified"/><field name="indexnow_pending_count" string="Pending"/><field name="indexnow_failed_count" string="Failed"/><field name="indexnow_submitted_today" string="Submitted Today"/><field name="indexnow_submitted_week" string="Submitted This Week"/><field name="indexnow_last_success_on" string="Last Successful Submission"/><field name="indexnow_last_error" string="Last Error" optional="hide"/><button name="action_indexnow_verify_key" type="object" string="Verify Key" invisible="not indexnow_key" groups="website_indexnow.group_indexnow_manager"/><button name="action_indexnow_submit_all_pages" type="object" string="Submit Pages" invisible="not indexnow_enabled"/><button name="action_indexnow_process_queue" type="object" string="Process Queue" invisible="not indexnow_enabled"/><button name="action_indexnow_open_history" type="object" string="History"/></list></field>
+    </record>
+    <record id="action_indexnow_dashboard_client" model="ir.actions.client">
+        <field name="name">IndexNow Dashboard</field>
+        <field name="tag">website_indexnow.dashboard</field>
+    </record>
+</odoo>

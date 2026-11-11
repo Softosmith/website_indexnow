@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_indexnow_manager" model="res.groups">
+        <field name="name">IndexNow Manager</field>
+        <field name="privilege_id" ref="website.res_groups_privilege_website"/>
+        <field name="implied_by_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+</odoo>

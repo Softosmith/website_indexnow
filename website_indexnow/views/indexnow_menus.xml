@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_indexnow_root" name="IndexNow" parent="website.menu_website_configuration" sequence="60" groups="website.group_website_designer"/>
+    <menuitem id="menu_indexnow_dashboard" name="Dashboard" parent="menu_indexnow_root" action="action_indexnow_dashboard_client" sequence="10"/>
+    <menuitem id="menu_indexnow_queue" name="URL Queue" parent="menu_indexnow_root" action="action_indexnow_queue" sequence="20"/>
+    <menuitem id="menu_indexnow_submission" name="Submission History" parent="menu_indexnow_root" action="action_indexnow_submission" sequence="30"/>
+    <menuitem id="menu_indexnow_submit_pages" name="Submit Website Pages" parent="menu_indexnow_root" action="action_indexnow_submit_wizard" sequence="40"/>
+    <menuitem id="menu_indexnow_settings" name="Settings" parent="menu_indexnow_root" action="action_open_indexnow_settings" sequence="50"/>
+</odoo>

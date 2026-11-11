@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sequence_indexnow_submission" model="ir.sequence">
+        <field name="name">IndexNow Submission</field>
+        <field name="code">website.indexnow.submission</field>
+        <field name="prefix">IDX/%(year)s/</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

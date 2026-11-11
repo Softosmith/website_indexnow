@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="indexnow_submission_list" model="ir.ui.view">
+        <field name="name">website.indexnow.submission.list</field><field name="model">website.indexnow.submission</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0" delete="0" decoration-danger="result == 'failed'" decoration-success="result in ('success', 'accepted')"><field name="name"/><field name="website_id" groups="website.group_multi_website"/><field name="host"/><field name="url_count"/><field name="trigger"/><field name="submitted_on"/><field name="duration"/><field name="http_status"/><field name="result" widget="badge" decoration-success="result == 'accepted'" decoration-info="result == 'success'" decoration-danger="result == 'failed'"/><field name="attempt_number"/><button name="action_retry_failed_urls" type="object" string="Retry Failed URLs" invisible="result != 'failed'"/><button name="action_open_website" type="object" icon="fa-external-link" title="Open Website"/></list></field>
+    </record>
+    <record id="indexnow_submission_form" model="ir.ui.view">
+        <field name="name">website.indexnow.submission.form</field><field name="model">website.indexnow.submission</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0"><header><button name="action_retry_failed_urls" type="object" string="Retry Failed URLs" invisible="result != 'failed'"/><field name="result" widget="statusbar"/></header><sheet><group><group><field name="name"/><field name="website_id"/><field name="host"/><field name="endpoint"/><field name="trigger"/></group><group><field name="submitted_by"/><field name="submitted_on"/><field name="duration"/><field name="http_status"/><field name="attempt_number"/><field name="url_count"/></group></group><group string="Submitted URLs"><field name="urls" nolabel="1"/></group><group string="Provider Response"><field name="response" nolabel="1"/></group><field name="queue_ids"/></sheet></form></field>
+    </record>
+    <record id="indexnow_submission_search" model="ir.ui.view">
+        <field name="name">website.indexnow.submission.search</field><field name="model">website.indexnow.submission</field>
+        <field name="arch" type="xml">
+            <search><field name="name"/><field name="host"/><field name="website_id"/><filter name="success" string="Submitted" domain="[('result', '=', 'success')]"/><filter name="accepted" string="Accepted" domain="[('result', '=', 'accepted')]"/><filter name="failed" string="Failed" domain="[('result', '=', 'failed')]"/><group name="groupby"><filter name="group_website" string="Website" context="{'group_by': 'website_id'}"/><filter name="group_trigger" string="Trigger" context="{'group_by': 'trigger'}"/><filter name="group_result" string="Result" context="{'group_by': 'result'}"/></group></search></field>
+    </record>
+    <record id="action_indexnow_submission" model="ir.actions.act_window"><field name="name">Submission History</field><field name="res_model">website.indexnow.submission</field><field name="view_mode">list,form</field><field name="search_view_id" ref="indexnow_submission_search"/></record>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_indexnow_queue_designer,indexnow.queue.designer,model_website_indexnow_queue,website.group_website_designer,1,0,1,0
+access_indexnow_queue_manager,indexnow.queue.manager,model_website_indexnow_queue,website_indexnow.group_indexnow_manager,1,1,1,1
+access_indexnow_submission_designer,indexnow.submission.designer,model_website_indexnow_submission,website.group_website_designer,1,0,0,0
+access_indexnow_submission_manager,indexnow.submission.manager,model_website_indexnow_submission,website_indexnow.group_indexnow_manager,1,0,1,0
+access_indexnow_wizard_designer,indexnow.wizard.designer,model_website_indexnow_submit_wizard,website.group_website_designer,1,1,1,1

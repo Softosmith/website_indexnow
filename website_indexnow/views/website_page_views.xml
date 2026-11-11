@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="website_pages_form_view_indexnow" model="ir.ui.view">
+        <field name="name">website.page.form.indexnow</field>
+        <field name="model">website.page</field>
+        <field name="inherit_id" ref="website.website_pages_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <footer>
+                    <button name="action_indexnow_submit" type="object" string="Submit to IndexNow" class="btn-primary" invisible="indexnow_state == 'not_eligible'" groups="website.group_website_designer"/>
+                    <button name="action_indexnow_retry" type="object" string="Retry Submission" invisible="indexnow_state != 'failed'" groups="website.group_website_designer"/>
+                    <button name="action_indexnow_history" type="object" string="Submission History" groups="website.group_website_designer"/>
+                </footer>
+            </xpath>
+            <xpath expr="//sheet/group" position="after">
+                <group string="IndexNow">
+                    <field name="indexnow_state" widget="badge"
+                           decoration-success="indexnow_state == 'accepted'"
+                           decoration-info="indexnow_state == 'submitted'"
+                           decoration-danger="indexnow_state == 'failed'"
+                           decoration-warning="indexnow_state == 'pending'"
+                           decoration-primary="indexnow_state == 'never'"
+                           decoration-muted="indexnow_state == 'removed'"/>
+                    <field name="indexnow_last_queued_on"/>
+                    <field name="indexnow_last_submitted_on"/>
+                    <field name="indexnow_last_http_status"/>
+                    <field name="indexnow_last_url"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="website_pages_tree_view_indexnow" model="ir.ui.view">
+        <field name="name">website.page.list.indexnow</field>
+        <field name="model">website.page</field>
+        <field name="inherit_id" ref="website.website_pages_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="website_id" position="before">
+                <field name="indexnow_state" widget="badge" optional="show"
+                       decoration-success="indexnow_state in ('submitted', 'accepted')"
+                       decoration-danger="indexnow_state == 'failed'"
+                       decoration-warning="indexnow_state == 'pending'"
+                       decoration-muted="indexnow_state in ('not_eligible', 'never', 'removed')"/>
+            </field>
+        </field>
+    </record>
+    <record id="server_action_submit_pages_indexnow" model="ir.actions.server">
+        <field name="name">Submit to IndexNow</field>
+        <field name="model_id" ref="website.model_website_page"/>
+        <field name="binding_model_id" ref="website.model_website_page"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_indexnow_submit()</field>
+    </record>
+</odoo>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_indexnow" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.indexnow</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='website_settings']" position="inside">
+                <setting id="website_indexnow_setting" string="IndexNow SEO" class="col-lg-12" help="Submit changed Website pages to IndexNow-enabled search engines.">
+                    <field name="indexnow_enabled"/>
+                    <div class="content-group" invisible="not indexnow_enabled">
+                        <div class="row mt16">
+                            <label for="website_domain" class="col-lg-4 o_light_label"/>
+                            <field name="website_domain" class="col-lg-8" readonly="1"/>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_key" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_key" class="col-lg-8" password="True" groups="website_indexnow.group_indexnow_manager"/>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2 mt8" groups="website_indexnow.group_indexnow_manager">
+                            <button name="action_indexnow_generate_key" type="object" string="Generate Key" class="btn btn-primary" invisible="indexnow_key"/>
+                            <button name="action_indexnow_regenerate_key" type="object" string="Regenerate Key" class="btn btn-secondary" confirm="Regenerate the key? The old public key URL will stop working." invisible="not indexnow_key"/>
+                            <button name="action_indexnow_open_key" type="object" string="Open Key File" class="btn btn-link" invisible="not indexnow_key"/>
+                            <button name="action_indexnow_verify_key" type="object" string="Verify Key File" class="btn btn-link" invisible="not indexnow_key"/>
+                            <button name="action_indexnow_remove_key" type="object" string="Remove Key File" class="btn btn-outline-danger" confirm="Remove the key file? The public key URL will stop working, and submissions cannot continue until you generate a new key." invisible="not indexnow_key"/>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_key_url" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_key_url" class="col-lg-8" readonly="1"/>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_key_verified" class="col-lg-4 o_light_label"/>
+                            <div class="col-lg-8 d-flex flex-wrap align-items-center gap-2">
+                                <field name="indexnow_key_verified"/>
+                                <field name="indexnow_key_verified_on" invisible="not indexnow_key_verified"/>
+                            </div>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_auto_submit" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_auto_submit" class="col-lg-8"/>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_submit_translations" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_submit_translations" class="col-lg-8"/>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_submission_delay" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_submission_delay" class="col-lg-4"/>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_batch_size" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_batch_size" class="col-lg-4"/>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_endpoint" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_endpoint" class="col-lg-8"/>
+                        </div>
+                        <div class="row mt8">
+                            <label for="indexnow_last_success_on" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_last_success_on" class="col-lg-8" readonly="1"/>
+                        </div>
+                        <div class="row mt8" invisible="not indexnow_last_error">
+                            <label for="indexnow_last_error" class="col-lg-4 o_light_label"/>
+                            <field name="indexnow_last_error" class="col-lg-8" readonly="1"/>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2 mt16 pt-2 border-top">
+                            <button name="action_indexnow_submit_all_pages" type="object" string="Submit All Published Pages" class="btn btn-primary" confirm="Queue all eligible published pages for this website?"/>
+                            <button name="action_indexnow_process_queue" type="object" string="Process Queue Now" class="btn btn-secondary"/>
+                            <button name="action_indexnow_open_history" type="object" string="View Submission History" class="btn btn-link"/>
+                        </div>
+                        <small class="text-muted d-block mt8">A successful submission means the URL was received, not guaranteed to be indexed.</small>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
