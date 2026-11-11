@@ -13,7 +13,7 @@ IndexNow SEO for standard Odoo Website pages. Generate and verify a separate key
     'website': 'https://softosmith.com',
     'support': 'support@softosmith.com',
     'license': 'OPL-1',
-    'price': 49.99,
+    'price': 25.00,
     'currency': 'USD',
     'depends': ['website'],
     'data': [
