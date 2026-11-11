@@ -30,7 +30,10 @@ IndexNow SEO for standard Odoo Website pages. Generate and verify a separate key
         'wizard/indexnow_submit_wizard_views.xml',
         'views/indexnow_menus.xml',
     ],
-    'images': ['static/description/icon.png'],
+    'images': [
+        'static/description/website-indexnow-animated.gif',
+        'static/description/icon.png',
+    ],
     'assets': {
         'web.assets_backend': [
             'website_indexnow/static/src/js/indexnow_settings.js',
