@@ -16,9 +16,12 @@
         --ix-surface: #f7f9fc;
         width: 100%;
         max-width: 1200px;
+        min-width: 0;
         margin: 0 auto;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-x: clip;
         color: var(--ix-ink);
+        container-type: inline-size;
         background: #fff;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
         font-size: 16px;
@@ -31,22 +34,42 @@
         box-sizing: border-box;
     }
 
+    .ix-app section,
+    .ix-app div,
+    .ix-app article,
+    .ix-app header,
+    .ix-app footer {
+        max-width: 100%;
+        min-width: 0;
+    }
+
     .ix-app img {
         display: block;
-        max-width: 100%;
-        height: auto;
+        width: auto;
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    .ix-app p,
+    .ix-app li,
+    .ix-app a,
+    .ix-app span,
+    .ix-app code {
+        overflow-wrap: anywhere;
     }
 
     .ix-shell {
         width: 100%;
         max-width: 1080px;
+        min-width: 0;
         margin: 0 auto;
-        padding-right: 32px;
-        padding-left: 32px;
+        padding-right: clamp(16px, 3vw, 32px);
+        padding-left: clamp(16px, 3vw, 32px);
     }
 
     .ix-section {
-        padding: 88px 0;
+        width: 100%;
+        padding: clamp(56px, 8vw, 88px) 0;
     }
 
     .ix-section--soft {
@@ -96,14 +119,14 @@
     .ix-title {
         max-width: 900px;
         margin: 0 auto 22px;
-        font-size: 52px;
+        font-size: clamp(32px, 5vw, 52px);
         line-height: 1.06;
     }
 
     .ix-heading {
         max-width: 760px;
         margin: 0 auto 18px;
-        font-size: 36px;
+        font-size: clamp(27px, 3.6vw, 36px);
         line-height: 1.16;
     }
 
@@ -201,23 +224,21 @@
 
     .ix-value-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+        gap: 1px;
         margin-top: 48px;
         overflow: hidden;
         border: 1px solid var(--ix-line);
         border-radius: 18px;
-        background: rgba(255, 255, 255, .92);
+        background: var(--ix-line);
         box-shadow: 0 12px 35px rgba(23, 32, 51, .06);
     }
 
     .ix-value {
         min-width: 0;
         padding: 25px 22px;
+        background: rgba(255, 255, 255, .96);
         text-align: left;
-    }
-
-    .ix-value + .ix-value {
-        border-left: 1px solid var(--ix-line);
     }
 
     .ix-value-mark {
@@ -249,7 +270,7 @@
 
     .ix-feature-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
         gap: 22px;
         margin-top: 46px;
     }
@@ -296,7 +317,7 @@
     .ix-flow {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 46px;
+        gap: clamp(24px, 4vw, 46px);
         margin-top: 46px;
         counter-reset: ix-step;
     }
@@ -319,7 +340,7 @@
         color: rgba(255, 255, 255, .65);
         font-size: 26px;
         line-height: 1;
-        content: "→";
+        content: "\2192";
         transform: translateY(-50%);
     }
 
@@ -352,8 +373,8 @@
 
     .ix-dashboard {
         display: grid;
-        grid-template-columns: minmax(220px, .34fr) minmax(0, .66fr);
-        gap: 42px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        gap: clamp(24px, 4vw, 42px);
         align-items: center;
         margin-top: 48px;
     }
@@ -386,7 +407,9 @@
     }
 
     .ix-media {
+        width: 100%;
         min-width: 0;
+        overflow: hidden;
         padding: 9px;
         border: 1px solid #dce2ea;
         border-radius: 18px;
@@ -396,12 +419,14 @@
 
     .ix-media img {
         width: 100%;
+        max-width: 100%;
         border-radius: 10px;
+        object-fit: contain;
     }
 
     .ix-screen-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
         gap: 24px;
         margin-top: 64px;
     }
@@ -444,7 +469,7 @@
 
     .ix-reliability-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
         gap: 24px;
         margin-top: 46px;
     }
@@ -496,7 +521,7 @@
 
     .ix-detail-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
         gap: 1px;
         margin-top: 44px;
         overflow: hidden;
@@ -559,6 +584,18 @@
         font-size: 14px;
     }
 
+    .ix-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 6px 10px;
+    }
+
+    .ix-footer-links a {
+        min-width: 0;
+    }
+
     .ix-footer a {
         color: var(--ix-purple);
         font-weight: 700;
@@ -584,46 +621,43 @@
         font-size: 12px !important;
     }
 
-    @media (max-width: 900px) {
-        .ix-section { padding: 72px 0; }
-        .ix-title { font-size: 43px; }
-        .ix-heading { font-size: 32px; }
-        .ix-value-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .ix-value:nth-child(3) { border-top: 1px solid var(--ix-line); border-left: 0; }
-        .ix-value:nth-child(4) { border-top: 1px solid var(--ix-line); }
+    @container (max-width: 900px) {
         .ix-feature-grid { grid-template-columns: 1fr; }
-        .ix-feature-card { display: grid; grid-template-columns: 80px 1fr; column-gap: 24px; }
+        .ix-feature-card { display: grid; grid-template-columns: 80px minmax(0, 1fr); column-gap: 24px; }
         .ix-feature-icon { grid-row: span 2; margin-bottom: 0; }
         .ix-dashboard { grid-template-columns: 1fr; gap: 28px; }
         .ix-shot-copy { text-align: center; }
     }
 
-    @media (max-width: 700px) {
-        .ix-shell { padding-right: 20px; padding-left: 20px; }
+    @container (max-width: 700px) {
         .ix-hero { padding: 64px 0 58px; }
-        .ix-section { padding: 60px 0; }
-        .ix-title { font-size: 36px; }
-        .ix-heading { font-size: 29px; }
         .ix-lead, .ix-intro { font-size: 16px; }
         .ix-hero-frame { padding: 7px; border-radius: 16px; }
         .ix-hero-frame img { border-radius: 10px; }
         .ix-flow { grid-template-columns: 1fr; gap: 38px; }
-        .ix-step:not(:last-child)::after { top: auto; right: 50%; bottom: -31px; content: "↓"; transform: translateX(50%); }
+        .ix-step:not(:last-child)::after { top: auto; right: 50%; bottom: -31px; content: "\2193"; transform: translateX(50%); }
         .ix-screen-grid, .ix-reliability-grid, .ix-detail-grid { grid-template-columns: 1fr; }
         .ix-screen-grid { margin-top: 48px; }
     }
 
-    @media (max-width: 480px) {
-        .ix-shell { padding-right: 16px; padding-left: 16px; }
-        .ix-title { font-size: 32px; }
-        .ix-heading { font-size: 27px; }
+    @container (max-width: 480px) {
         .ix-badges { margin-bottom: 32px; }
         .ix-value-grid { grid-template-columns: 1fr; }
-        .ix-value + .ix-value { border-top: 1px solid var(--ix-line); border-left: 0; }
         .ix-feature-card { display: block; padding: 25px 22px; }
         .ix-feature-icon { margin-bottom: 22px; }
         .ix-screen-content, .ix-reliability-card { padding: 24px 22px; }
         .ix-shot-title { font-size: 24px; }
+    }
+
+    @media (max-width: 900px) {
+        .ix-dashboard { grid-template-columns: 1fr; gap: 28px; }
+        .ix-shot-copy { text-align: center; }
+    }
+
+    @media (max-width: 700px) {
+        .ix-flow { grid-template-columns: 1fr; gap: 38px; }
+        .ix-step:not(:last-child)::after { top: auto; right: 50%; bottom: -31px; content: "\2193"; transform: translateX(50%); }
+        .ix-screen-grid, .ix-reliability-grid, .ix-detail-grid { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -642,7 +676,7 @@
             <h1 class="ix-title">Publish a Page. Notify Search Providers Automatically.</h1>
             <p class="ix-lead">
                 Keep search providers informed when your Odoo Website pages change. Canonical URLs are queued,
-                deduplicated, and submitted in the background—without slowing down your editors.
+                deduplicated, and submitted in the background&mdash;without slowing down your editors.
             </p>
 
             <div class="ix-badges" aria-label="Product highlights">
@@ -654,7 +688,7 @@
             </div>
 
             <div class="ix-hero-frame">
-                <img src="website-indexnow-animated.gif" width="1200" height="630" alt="Animated workflow showing an Odoo page change moving through a safe queue to an IndexNow-enabled provider">
+                <img src="website-indexnow-animated.gif" width="1200" height="630" decoding="async" fetchpriority="high" alt="Animated workflow showing an Odoo page change moving through a safe queue to an IndexNow-enabled provider">
             </div>
 
             <div class="ix-value-grid" aria-label="Core capabilities">
@@ -666,7 +700,7 @@
                 <div class="ix-value">
                     <span class="ix-value-mark" aria-hidden="true"></span>
                     <strong>Per-Website Keys</strong>
-                    <span>Keep each domain’s configuration and key isolated.</span>
+                    <span>Keep each domain&rsquo;s configuration and key isolated.</span>
                 </div>
                 <div class="ix-value">
                     <span class="ix-value-mark" aria-hidden="true"></span>
@@ -694,7 +728,7 @@
             <div class="ix-feature-grid">
                 <div class="ix-feature-card">
                     <div class="ix-feature-icon">
-                        <img src="feature_automatic.png" width="256" height="256" alt="A web page sending an update to an automatic queue">
+                        <img src="feature_automatic.png" width="256" height="256" loading="lazy" decoding="async" alt="A web page sending an update to an automatic queue">
                     </div>
                     <h3 class="ix-card-title">Automatic, Never Blocking</h3>
                     <p>Editors keep working while scheduled jobs submit eligible URL changes in safe batches.</p>
@@ -702,7 +736,7 @@
 
                 <div class="ix-feature-card">
                     <div class="ix-feature-icon">
-                        <img src="feature_multiwebsite.png" width="256" height="256" alt="Three isolated websites with separate keys">
+                        <img src="feature_multiwebsite.png" width="256" height="256" loading="lazy" decoding="async" alt="Three isolated websites with separate keys">
                     </div>
                     <h3 class="ix-card-title">True Multi-Website Isolation</h3>
                     <p>Every website keeps its own domain, key, settings, queue, and submission history.</p>
@@ -710,7 +744,7 @@
 
                 <div class="ix-feature-card">
                     <div class="ix-feature-icon">
-                        <img src="feature_retry.png" width="256" height="256" alt="A URL card with bounded retry arrows and a success check">
+                        <img src="feature_retry.png" width="256" height="256" loading="lazy" decoding="async" alt="A URL card with bounded retry arrows and a success check">
                     </div>
                     <h3 class="ix-card-title">Predictable Retry Behavior</h3>
                     <p>Temporary failures retry with backoff; configuration errors remain visible for correction.</p>
@@ -763,7 +797,7 @@
                     <p>Compare enabled state, queue health, submission volume, and recent outcomes from one focused Odoo screen.</p>
                 </div>
                 <div class="ix-media">
-                    <img src="screenshots/screenshot_dashboard.png" width="1920" height="1657" alt="IndexNow dashboard showing submission health, queue activity, and status across Odoo websites">
+                    <img src="screenshots/screenshot_dashboard.png" width="1920" height="1657" loading="lazy" decoding="async" alt="IndexNow dashboard showing submission health, queue activity, and status across Odoo websites">
                 </div>
             </div>
         </div>
@@ -780,7 +814,7 @@
             <div class="ix-screen-grid">
                 <div class="ix-screen-card">
                     <div class="ix-media">
-                        <img src="screenshots/screenshot_settings.png" width="945" height="543" alt="IndexNow configuration and key verification in Odoo Website settings">
+                        <img src="screenshots/screenshot_settings.png" width="945" height="543" loading="lazy" decoding="async" alt="IndexNow configuration and key verification in Odoo Website settings">
                     </div>
                     <div class="ix-screen-content">
                         <span class="ix-shot-kicker">Configuration</span>
@@ -791,7 +825,7 @@
 
                 <div class="ix-screen-card">
                     <div class="ix-media">
-                        <img src="screenshots/screenshot_queue.png" width="1920" height="506" alt="IndexNow URL queue with page events and processing states in Odoo">
+                        <img src="screenshots/screenshot_queue.png" width="1920" height="506" loading="lazy" decoding="async" alt="IndexNow URL queue with page events and processing states in Odoo">
                     </div>
                     <div class="ix-screen-content">
                         <span class="ix-shot-kicker">URL Queue</span>
@@ -802,7 +836,7 @@
 
                 <div class="ix-screen-card">
                     <div class="ix-media">
-                        <img src="screenshots/screenshot_history.png" width="1920" height="302" alt="IndexNow submission history showing batch status, duration, and provider responses">
+                        <img src="screenshots/screenshot_history.png" width="1920" height="302" loading="lazy" decoding="async" alt="IndexNow submission history showing batch status, duration, and provider responses">
                     </div>
                     <div class="ix-screen-content">
                         <span class="ix-shot-kicker">Submission History</span>
@@ -815,7 +849,7 @@
                     <div class="ix-screen-content">
                         <span class="ix-shot-kicker">Page Lifecycle</span>
                         <h3 class="ix-shot-title">Track the Changes That Matter</h3>
-                        <p>Queue supported publish, update, move, restriction, unpublish, de-index, and deletion events—automatically.</p>
+                        <p>Queue supported publish, update, move, restriction, unpublish, de-index, and deletion events&mdash;automatically.</p>
                         <ul class="ix-list">
                             <li>Canonical URL normalization and deduplication</li>
                             <li>Enabled website language variants</li>
@@ -855,7 +889,7 @@
                         <li>Responses and timing are recorded per batch</li>
                     </ul>
                     <div class="ix-note">
-                        <strong>Honest status language:</strong> “Submitted,” “received,” or “accepted” means the provider received the URL. It does not guarantee crawling, indexing, ranking, or a specific search position.
+                        <strong>Honest status language:</strong> &ldquo;Submitted,&rdquo; &ldquo;received,&rdquo; or &ldquo;accepted&rdquo; means the provider received the URL. It does not guarantee crawling, indexing, ranking, or a specific search position.
                     </div>
                 </div>
             </div>
@@ -906,12 +940,12 @@
 
     <div class="oe_container ix-footer">
         <div class="ix-shell">
-            <img class="ix-footer-logo" src="logo_softosmith.png" width="468" height="168" alt="Softosmith — The Digital Innovation">
+            <img class="ix-footer-logo" src="logo_softosmith.png" width="468" height="168" loading="lazy" decoding="async" alt="Softosmith &mdash; The Digital Innovation">
             <h2>Support &amp; Custom Odoo Development</h2>
             <p>Built and maintained by Asad Ali at Softosmith.</p>
-            <p>
+            <p class="ix-footer-links">
                 <a href="mailto:support@softosmith.com">support@softosmith.com</a>
-                &nbsp;·&nbsp;
+                <span aria-hidden="true">&middot;</span>
                 <a href="https://softosmith.com">softosmith.com</a>
             </p>
             <p class="ix-legal">
