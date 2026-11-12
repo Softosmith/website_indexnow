@@ -1,0 +1,6 @@
+id,name,model_id,group_id/id,operation,domain
+access_indexnow_queue_designer,indexnow.queue.designer,website.indexnow.queue,website.group_website_designer,cr,
+access_indexnow_queue_manager,indexnow.queue.manager,website.indexnow.queue,website_indexnow.group_indexnow_manager,crud,
+access_indexnow_submission_designer,indexnow.submission.designer,website.indexnow.submission,website.group_website_designer,r,
+access_indexnow_submission_manager,indexnow.submission.manager,website.indexnow.submission,website_indexnow.group_indexnow_manager,cr,
+access_indexnow_wizard_designer,indexnow.wizard.designer,website.indexnow.submit.wizard,website.group_website_designer,crud,

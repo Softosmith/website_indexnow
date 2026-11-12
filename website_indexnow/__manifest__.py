@@ -1,7 +1,7 @@
 # Copyright (C) 2026 Asad Ali (Softosmith)
 {
     'name': 'Odoo IndexNow SEO – Automatic URL Submission',
-    'version': '19.0.1.1.0',
+    'version': '20.0.1.1.0',
     'category': 'Website/SEO',
     'summary': 'Automatically submits new and updated website pages to IndexNow-supported search engines.',
     'description': """
@@ -18,7 +18,7 @@ IndexNow SEO for standard Odoo Website pages. Generate and verify a separate key
     'depends': ['website'],
     'data': [
         'security/indexnow_security.xml',
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'data/indexnow_sequence.xml',
         'data/indexnow_cron.xml',
         'views/res_config_settings_views.xml',

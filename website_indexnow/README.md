@@ -1,6 +1,6 @@
 # Odoo IndexNow SEO – Automatic URL Submission
 
-IndexNow submission for standard Odoo 19 Website Builder pages (`website.page`).
+IndexNow submission for standard Odoo 20 Website Builder pages (`website.page`).
 
 ## Features
 

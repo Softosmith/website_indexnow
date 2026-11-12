@@ -37,7 +37,7 @@ class WebsitePage(models.Model):
     def _indexnow_queue_transition(self, before, vals):
         if self.env.context.get('indexnow_skip_tracking'):
             return
-        visibility_fields = {'website_published', 'is_published', 'date_publish', 'visibility', 'group_ids', 'website_indexed'}
+        visibility_fields = {'website_published', 'is_published', 'publish_on', 'visibility', 'group_ids', 'website_indexed'}
         content_fields = {'arch', 'arch_db', 'name', 'website_meta_title', 'website_meta_description', 'website_meta_keywords'}
         for page in self:
             for website in page._indexnow_websites():
@@ -51,7 +51,7 @@ class WebsitePage(models.Model):
                     event = 'unpublished'
                     if 'website_indexed' in vals and not page.website_indexed:
                         event = 'non_indexed'
-                    elif ({'visibility', 'group_ids'} & set(vals)) and page.visibility:
+                    elif ({'visibility', 'group_ids'} & set(vals)) and page.visibility != 'public':
                         event = 'restricted'
                     self.env['website.indexnow.queue']._queue_urls(website, old_urls, event, page=page)
                 elif not old['eligible'] and new_eligible:

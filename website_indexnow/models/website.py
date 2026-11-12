@@ -319,8 +319,8 @@ class Website(models.Model):
             self.indexnow_enabled and self.indexnow_key
             and (not page.website_id or page.website_id == self)
             and page.website_published and page.website_indexed
-            and (not page.date_publish or page.date_publish <= fields.Datetime.now())
-            and not page.visibility
+            and (not page.publish_on or page.publish_on <= fields.Datetime.now())
+            and page.visibility == 'public'
         )
 
     def _indexnow_normalize_url(self, url):
